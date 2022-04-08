@@ -1,12 +1,15 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:patterns_get_x/controllers/home_controller.dart';
 import 'package:patterns_get_x/pages/create_page.dart';
 import 'package:patterns_get_x/pages/update_page.dart';
 
 import '../models/post_model.dart';
 import 'create_page.dart';
+import 'details_page.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = 'home_page';
@@ -51,8 +54,18 @@ class _HomePageState extends State<HomePage> {
           ListView.builder(
             itemCount: _controller.items.length,
             itemBuilder: (ctx, index){
-              return itemOfPost(_controller.items[index]);
-            },),
+              return GestureDetector(
+                onTap: (){
+
+                  Get.to(DetailPage(), arguments: _controller.items[index]);
+                  //Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage()));
+                },
+                child: Container(
+                    key: const Key('item'),
+                    child: itemOfPost(_controller.items[index])),
+              );
+            },
+          ),
           _controller.isLoading() ?
           const Center(
             child: CircularProgressIndicator(),

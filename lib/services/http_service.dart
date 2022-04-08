@@ -9,6 +9,7 @@ class Network {
   static Map<String, String> headers = {'Content-Type':'application/json; charset=UTF-8'};
 
   static String API_LIST = "/posts";
+  static String API_POST = "/posts/";
   static String API_CREATE = "/posts";
   static String API_UPDATE = "/posts/";
   static String API_DELETE = "/posts/";

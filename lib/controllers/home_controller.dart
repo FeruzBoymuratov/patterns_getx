@@ -23,4 +23,13 @@ class HomeController{
     }
     isLoading(false);
   }
+
+  void apiPostCall(Post post) async {
+    isLoading(true);
+    var response = await Network.GET(Network.API_POST + post.id.toString(), Network.paramsEmpty());
+    if(response != null){
+      print(response);
+    }
+    isLoading(false);
+  }
 }
